@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.1 (Python 3.13.0 on win32)" generated="2026-02-27T12:01:37.521838" rpa="false" schemaversion="5">
+<suite id="s1" name="IN10" source="c:\Users\caioe\Documents\Projetos\ENSTA\IN10">
+<suite id="s1-s1" name="testChuck" source="c:\Users\caioe\Documents\Projetos\ENSTA\IN10\testChuck.robot">
+<test id="s1-s1-t1" name="test category" line="37">
+<kw name="mon premier keyword" type="SETUP">
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${mot} mon mot cle complique</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.642189" elapsed="0.000640"/>
+</kw>
+<return>
+<value>J'ai réussi</value>
+<status status="PASS" start="2026-02-27T12:01:37.642969" elapsed="0.000148"/>
+</return>
+<arg>Hello World</arg>
+<status status="PASS" start="2026-02-27T12:01:37.641535" elapsed="0.001709"/>
+</kw>
+<kw name="renvoyer les categories de blagues">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2026-02-27T12:01:37.644289" level="INFO">Creating Session using : alias=maSession, url=https://api.chucknorris.io, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>maSession</arg>
+<arg>https://api.chucknorris.io</arg>
+<arg>disable_warnings=1</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2026-02-27T12:01:37.643950" elapsed="0.000893"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2026-02-27T12:01:37.798845" level="INFO">GET Request : url=https://api.chucknorris.io/jokes/categories 
+ path_url=/jokes/categories 
+ headers={'User-Agent': 'python-requests/2.32.5', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2026-02-27T12:01:37.799229" level="INFO">GET Response : url=https://api.chucknorris.io/jokes/categories 
+ status=200, reason=OK 
+ headers={'Date': 'Fri, 27 Feb 2026 11:01:37 GMT', 'Content-Type': 'application/json', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'Nel': '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}', 'Report-To': '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=rdG0edLwgmp9zXsCD2jnE3fap6JvzAGpyfCXuALLwSE%3D\\u0026sid=812dcc77-0bd0-43b1-a5f1-b25750382959\\u0026ts=1772190097"}],"max_age":3600}', 'Reporting-Endpoints': 'heroku-nel="https://nel.heroku.com/reports?s=rdG0edLwgmp9zXsCD2jnE3fap6JvzAGpyfCXuALLwSE%3D&amp;sid=812dcc77-0bd0-43b1-a5f1-b25750382959&amp;ts=1772190097"', 'Server': 'cloudflare', 'Vary': 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers', 'Via': '1.1 heroku-router', 'X-Frame-Options': 'DENY', 'cf-cache-status': 'DYNAMIC', 'Content-Encoding': 'gzip', 'CF-RAY': '9d472f6f4cb9d3f8-CDG', 'alt-svc': 'h3=":443"; ma=86400'} 
+ body=["animal","career","celebrity","dev","explicit","fashion","food","history","money","movie","music","political","religion","science","sport","travel"] 
+ </msg>
+<msg time="2026-02-27T12:01:37.799459" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<var>${resp}</var>
+<arg>maSession</arg>
+<arg>/jokes/categories</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.645046" elapsed="0.154497"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${resp.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.799724" elapsed="0.000987"/>
+</kw>
+<return>
+<value>${resp.json()}</value>
+<status status="PASS" start="2026-02-27T12:01:37.800836" elapsed="0.000394"/>
+</return>
+<msg time="2026-02-27T12:01:37.801623" level="INFO">${resp} = ['animal', 'career', 'celebrity', 'dev', 'explicit', 'fashion', 'food', 'history', 'money', 'movie', 'music', 'political', 'religion', 'science', 'sport', 'travel']</msg>
+<var>${resp}</var>
+<status status="PASS" start="2026-02-27T12:01:37.643527" elapsed="0.158218"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${resp}</arg>
+<arg>dev</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.802144" elapsed="0.000704"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${resp}</arg>
+<arg>animal</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.803186" elapsed="0.000499"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.804380" elapsed="0.000491"/>
+</kw>
+<var name="${elt}">animal</var>
+<status status="PASS" start="2026-02-27T12:01:37.804221" elapsed="0.000735"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.805250" elapsed="0.000355"/>
+</kw>
+<var name="${elt}">career</var>
+<status status="PASS" start="2026-02-27T12:01:37.805072" elapsed="0.000599"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.805908" elapsed="0.000297"/>
+</kw>
+<var name="${elt}">celebrity</var>
+<status status="PASS" start="2026-02-27T12:01:37.805763" elapsed="0.000503"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.806487" elapsed="0.000311"/>
+</kw>
+<var name="${elt}">dev</var>
+<status status="PASS" start="2026-02-27T12:01:37.806361" elapsed="0.000502"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.807080" elapsed="0.000327"/>
+</kw>
+<var name="${elt}">explicit</var>
+<status status="PASS" start="2026-02-27T12:01:37.806948" elapsed="0.000520"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.807691" elapsed="0.000301"/>
+</kw>
+<var name="${elt}">fashion</var>
+<status status="PASS" start="2026-02-27T12:01:37.807558" elapsed="0.000492"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.808246" elapsed="0.000293"/>
+</kw>
+<var name="${elt}">food</var>
+<status status="PASS" start="2026-02-27T12:01:37.808127" elapsed="0.000474"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.808802" elapsed="0.000313"/>
+</kw>
+<var name="${elt}">history</var>
+<status status="PASS" start="2026-02-27T12:01:37.808675" elapsed="0.000518"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.809409" elapsed="0.000403"/>
+</kw>
+<var name="${elt}">money</var>
+<status status="PASS" start="2026-02-27T12:01:37.809267" elapsed="0.000630"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.810148" elapsed="0.000444"/>
+</kw>
+<var name="${elt}">movie</var>
+<status status="PASS" start="2026-02-27T12:01:37.809985" elapsed="0.000691"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.810945" elapsed="0.000445"/>
+</kw>
+<var name="${elt}">music</var>
+<status status="PASS" start="2026-02-27T12:01:37.810773" elapsed="0.000696"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.811882" elapsed="0.000390"/>
+</kw>
+<var name="${elt}">political</var>
+<status status="PASS" start="2026-02-27T12:01:37.811723" elapsed="0.000633"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.812588" elapsed="0.000317"/>
+</kw>
+<var name="${elt}">religion</var>
+<status status="PASS" start="2026-02-27T12:01:37.812438" elapsed="0.000547"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.813212" elapsed="0.000459"/>
+</kw>
+<var name="${elt}">science</var>
+<status status="PASS" start="2026-02-27T12:01:37.813066" elapsed="0.000689"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.814025" elapsed="0.000464"/>
+</kw>
+<var name="${elt}">sport</var>
+<status status="PASS" start="2026-02-27T12:01:37.813847" elapsed="0.000732"/>
+</iter>
+<iter>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>${elt}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.814855" elapsed="0.000405"/>
+</kw>
+<var name="${elt}">travel</var>
+<status status="PASS" start="2026-02-27T12:01:37.814673" elapsed="0.000657"/>
+</iter>
+<var>${elt}</var>
+<value>@{resp}</value>
+<status status="PASS" start="2026-02-27T12:01:37.803935" elapsed="0.011434"/>
+</for>
+<kw name="Log To Console" owner="BuiltIn" type="TEARDOWN">
+<arg>Fin du test</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-27T12:01:37.815712" elapsed="0.000493"/>
+</kw>
+<status status="PASS" start="2026-02-27T12:01:37.638526" elapsed="0.177831"/>
+</test>
+<status status="PASS" start="2026-02-27T12:01:37.558813" elapsed="0.262904"/>
+</suite>
+<status status="PASS" start="2026-02-27T12:01:37.526033" elapsed="0.298366"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="IN10" id="s1" pass="1" fail="0" skip="0">IN10</stat>
+<stat name="testChuck" id="s1-s1" pass="1" fail="0" skip="0">IN10.testChuck</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

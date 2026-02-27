@@ -10,17 +10,18 @@ OPTIONS = -Wall -fexceptions -fprofile-arcs -ftest-coverage
 
 all: $(OBJS)
 	$(CXX) $(OPTIONS) $(INCS) -o testAll.exe $(OBJS) $(LDFLAGS)
-	cls
+	clear
 	
 exec : all
-	testAll.exe
+	./testAll.exe
 %.o: %.c
 	$(CXX) $(OPTIONS) -c  $< -o $@ $(INCS)
 	
 clean:
-	del $(OBJS) 
+	rm -r $(OBJS) 
 
 
 mrproper: clean
-	del testAll.exe
-	del result.xml
+	rm -f testAll.exe
+	rm -f *.gcda
+	rm -f *.gcno
